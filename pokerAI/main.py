@@ -2,7 +2,7 @@ import time
 from collections import defaultdict
 
 from libs.deuces.deuces import Deck, Card, Evaluator
-
+ 
 bb = 1
 
 class ActionError(Exception):
@@ -19,15 +19,27 @@ class player(object):
         self.table = None
         # 0: normal 1:small blind 2: big blind
         self.seat = 0
+        self.hands = None
 
     def get_two(self, cards):
         if not self.table:
-            raise ActionError("GET_TWO")
-        self.cur_phase = 0
-        self.hands[self.cur_phase] = cards
+            raise ActionError("GET_TWO", "not even seated")
+        self.hands = cards
 
     def check(self):
-        if self.cur_phase == 
-        if self.maxBet > self.bet[self.cur_phase]:
-            raise ActionError("CHECK")
-        self.choice[self.cur_phase] = 0
+        pass
+
+    def call(self):
+        pass
+
+    def fold(self):
+        pass
+
+    def raise(self, amount):
+        pass
+
+class game(object):
+    def __init__(self, NumPlayers=6, bb=1):
+        self.numPlayers = NumPlayers
+        # -1 not started; 0 
+        self.cur_phase = -1
