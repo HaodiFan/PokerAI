@@ -2,15 +2,18 @@ import time
 from collections import defaultdict
 
 from libs.deuces.deuces import Deck, Card, Evaluator
- 
+
 bb = 1
 
+
 class ActionError(Exception):
-    def __init__(self, action, elab = None):
+    def __init__(self, action, elab=None):
         self.action = action
-        self.elab = elab if elab  else "No elaboration"
+        self.elab = elab if elab else "No elaboration"
+
     def __str__(self):
         return "Action [{}] Invalid. Detail: {}".format(self.action, self.elab)
+
 
 class player(object):
     def __init__(self, name=None, fortune=100):
@@ -26,20 +29,21 @@ class player(object):
             raise ActionError("GET_TWO", "not even seated")
         self.hands = cards
 
-    def check(self):
+    def Check(self):
         pass
 
-    def call(self):
+    def Call(self):
         pass
 
-    def fold(self):
+    def Fold(self):
         pass
 
-    def raise(self, amount):
+    def Raise(self, amount):
         pass
+
 
 class game(object):
     def __init__(self, NumPlayers=6, bb=1):
         self.numPlayers = NumPlayers
-        # -1 not started; 0 
+        # -1 not started; 0
         self.cur_phase = -1
